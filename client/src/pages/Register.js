@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 
 function App() {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +22,10 @@ function App() {
     });
 
     const data = await response.json();
+
+    if (data.status === "ok") {
+      history.push("login");
+    }
   }
 
   return (
