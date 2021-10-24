@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [quote, setQuote] = useState("");
   const [tempQuote, setTempQuote] = useState("");
 
-  async function populateQuote() {
+  const populateQuote = async() => {
     const req = await fetch("http://localhost:5000/api/quote", {
       headers: { "x-access-token": localStorage.getItem("token") },
     });
@@ -20,7 +20,7 @@ const Dashboard = () => {
     }
   }
 
-  async function updateQuote(e) {
+  const updateQuote = async(e) => {
     e.preventDefault();
     const req = await fetch("http://localhost:5000/api/quote", {
       method: "POST",
@@ -54,8 +54,9 @@ const Dashboard = () => {
       }
     }
   }, []);
+  
   return (
-    <div>
+    <>
       <h1>Your quote: {quote || "No quote found"}</h1>
       <form onSubmit={updateQuote}>
         <input
@@ -64,10 +65,9 @@ const Dashboard = () => {
           value={tempQuote}
           onChange={(e) => setTempQuote(e.target.value)}
         />
-
         <input type="submit" value="Update quote" />
       </form>
-    </div>
+    </>
   );
 };
 
