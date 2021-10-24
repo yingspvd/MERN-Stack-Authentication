@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-function App() {
+const App = () => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function registerUser(event) {
+  const registerUser = async(event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:5000/api/register", {
       method: "POST",
@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <h1>Register</h1>
       <form onSubmit={registerUser}>
         <input
@@ -55,7 +55,7 @@ function App() {
         <br />
         <input type="submit" value="Register"></input>
       </form>
-    </div>
+    </>
   );
 }
 
