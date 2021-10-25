@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function loginUser(event) {
+  const loginUser = async(event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:5000/api/login", {
       method: "POST",
@@ -28,7 +28,7 @@ function Login() {
   }
 
   return (
-    <div>
+    <>
       <h1>Login</h1>
       <form onSubmit={loginUser}>
         <input
@@ -47,7 +47,7 @@ function Login() {
         <br />
         <input type="submit" value="Login"></input>
       </form>
-    </div>
+    </>
   );
 }
 
